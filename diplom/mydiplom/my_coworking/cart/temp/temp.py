@@ -1,0 +1,9 @@
+temp_index = 'cart/index.html'
+temp_selectdate = 'cart/select_date.html'
+temp_searchresults = 'cart/search_results.html'
+temp_cart = 'cart/cart.html'
+temp_selectdate1 = 'select_date.html'
+temp_searchresults1 = 'search_results.html'
+temp_products = 'cart/products.html'
+temp_order = 'cart/order.html'
+temp_checkout = "checkout.html"
