@@ -14,8 +14,10 @@
     <div class="form-group">
         <label for="order_time">Время заказа:</label>
         <input type="time" class="form-control" id="order_time" name="order_time" value="{{ cart_item.order_time|time:'H:i' }}">
-    </div><a href="index/">
-    <button type="submit" class="btn btn-primary">Оформить заказ</button>
-    </a>
+    </div>
 </form>
+                        <form action="{% url 'cart:product_list' %}" class="form-inline" method="get">
+
+                        <button type="submit" class="btn btn-primary btn-lg mb-2">Оформить заказ</button>
+                        </form>
 {% endblock %}

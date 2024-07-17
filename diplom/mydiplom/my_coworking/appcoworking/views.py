@@ -7,7 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .temp.temp import temp_login, temp_registration, temp_main, temp_users, temp_details, temp_template, temp_login1
+from .temp.temp import temp_login, temp_registration, temp_main, temp_users, temp_details, temp_template, temp_login1, \
+    temp_all_users
 
 @login_required
 def user_login(request):
@@ -26,9 +27,12 @@ def user_login(request):
                 else:
                     context = {'error': 'Неправильное имя пользователя или пароль'}
                     return render(request, temp_login1, context)
+            else:
+                context = {'error': 'Неправильное имя пользователя или пароль'}
+                return render(request, temp_login1, context)
     else:
         form = LoginForm()
-    return render(request, temp_login, {'form': form})
+    return render(request, temp_login,{'form': form})
 
 def user_logout(redirect):
     """
@@ -66,7 +70,7 @@ def users(request):
     Эта функция получает список всех пользователей из базы данных и передает его в шаблон "temp_users" для отображения.
     """
     myusers = User.objects.all().values()
-    template = loader.get_template(temp_users)
+    template = loader.get_template(temp_all_users)
     context = {
         'myusers': myusers,
     }
@@ -105,7 +109,7 @@ def all_users(request):
     Представление, которое возвращает список всех пользователей.
     """
     users = User.objects.all()
-    return render(request, 'users.html', {'users': users})
+    return render(request, temp_users, {'users': users})
 
 
 

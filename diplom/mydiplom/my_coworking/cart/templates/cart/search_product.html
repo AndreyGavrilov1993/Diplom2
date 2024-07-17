@@ -65,18 +65,20 @@
 </form>
 				<a href="{% url 'cart:add_to_cart'  product.id %}" class="buy-now-button">Buy Now</a>
 				<a class="buy-now-button" href="{% url 'cart:add_to_cart' product.id %}">Add to Cart</a>
-                        <form action="{% url 'cart:product_list' %}" class="form-inline" method="get">
+                <form action="{% url 'cart:product_list' %}" class="form-inline" method="get">
 
-<button type="submit" class="btn btn-primary btn-lg mb-2">Назад</button>
+               <button type="submit" class="btn btn-primary btn-lg mb-2">Назад</button>
 
-</form>
+               </form>
 			</li>
+    </ul>
 </body>
       {% endfor %}
   {% else %}
     <p>Ничего не найдено.</p>
                         <form action="{% url 'cart:product_list' %}" class="form-inline" method="get">
 
-<button type="submit" class="btn btn-primary btn-lg mb-2">Назад</button>
+                        <button type="submit" class="btn btn-primary btn-lg mb-2">Назад</button>
+                        </form>
   {% endif %}
 {% endblock %}

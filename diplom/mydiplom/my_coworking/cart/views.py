@@ -11,7 +11,7 @@ from django.shortcuts import render
 from .forms import SearchForm
 from .utils import search_product
 from .temp.temp import temp_index, temp_cart, temp_searchresults, temp_searchresults1, \
-    temp_products, temp_order, temp_checkout
+    temp_products, temp_order, temp_checkout, temp_searchproduct, temp_cartcheckout
 
 
 def product_list(request):
@@ -142,7 +142,7 @@ def search_view(request):
     else:
         products = []
 
-    return render(request, 'cart/search_product.html', {
+    return render(request, temp_searchproduct, {
         'form': form,
         'products': products
     })
@@ -190,7 +190,7 @@ def checkout(request):
         "cart_items": cart_items,
         "total_price": total_price,
     }
-    return render(request, temp_checkout, context)
+    return render(request, temp_cartcheckout, context)
 
 def handle_payment(request):
     """
