@@ -5,7 +5,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title>Your Shopping Cart</title>
+
 	<style>
 		/* Add CSS styles for flex container and items */
 		.product-list {
@@ -41,7 +43,9 @@
 
 <body>
 
-	<h1>Your Shopping Cart</h1>
+	<h1>Your Shopping Cart, {{ user.username }}!</h1>
+	{% if request.user.is_authenticated %}
+	{% endif %}
 
 	<div class="product-list">
 

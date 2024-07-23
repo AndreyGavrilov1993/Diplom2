@@ -1,7 +1,8 @@
 {% extends "master.html" %}
 
-<!--{% block title %}-->
-<!--{% endblock %}-->
+{% block title %}
+Коворкинг
+{% endblock %}
 
 
 
@@ -153,8 +154,6 @@
 								<a class="navbar-brand" href="{% url 'logout' %}">Выйти</a>
 								{% if request.user.is_authenticated %}
 
-								<h3>Привет, {{ user.username }}!</h3>
-								<a class="navbar-brand" href="{% url 'logout' %}">Выйти</a>
 								{% endif %}
 
 								<a class="navbar-brand" href="registration/">Регистрация</a>

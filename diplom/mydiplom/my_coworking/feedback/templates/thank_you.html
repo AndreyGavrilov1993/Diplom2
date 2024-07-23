@@ -48,8 +48,11 @@
 <body>
     <div id="thankYouMessage">
         <h2>Thank You!</h2>
-        <p>Your feedback has been received.</p><br>
+        <p>Your feedback has been received, {{ user.username }}!</p><br>
         <br>
+	{% if request.user.is_authenticated %}
+	{% endif %}
+
         <p><a href="/"><button type="submit" class="btn btn-primary btn-lg mb-2">Back to Home</button></a></p>
     </div>
 </body>
