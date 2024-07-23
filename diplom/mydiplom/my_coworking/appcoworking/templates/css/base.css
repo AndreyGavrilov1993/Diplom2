@@ -9,8 +9,20 @@ body {
 	line-height: 1;
 	background-color: #FAFAFA;
 
+    flex-direction: column;
+
 	display: flex;
 	column-gap: 37px;
+}
+
+.main {
+       flex: 1 0 auto;
+       height: 100%;
+       display: grid;
+}
+
+.footer {
+	margin-top: auto;
 }
 
 /* Utility */

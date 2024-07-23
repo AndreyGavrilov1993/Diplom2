@@ -1,10 +1,11 @@
-<!--{% extends "master.html" %}-->
+{% extends "master.html" %}
 
 <!--{% block title %}-->
 <!--{% endblock %}-->
 
 
-<!--{% block content %}-->
+
+{% block content %}
 
  {% load static %}
 <!--<!DOCTYPE html>-->
@@ -91,12 +92,12 @@
 						>
 					</li>
                     <li>
-						<a href="index/"
+						<a href="book_computer/"
 							><img src="{% static 'img/icon/rent-computers.png' %}" alt="Rent computers" />Аренда компьютеров</a
 						>
 					</li>
                     <li>
-						<a href="index/"
+						<a href="book_printing/"
 							><img src="{% static 'img/icon/printer.png' %}" alt="Printer" />Печать</a
 						>
 					</li>
@@ -120,9 +121,7 @@
 					<img class="help-icon" src="{% static 'img/icons/help.svg' %}" alt="" />
 					Help Center
 				</a>
-				<div id="content">
-				{% block contenth %}{% endblock %}
-				</div>
+
 				</ul>
 			</div>
 		</div>
@@ -142,6 +141,7 @@
 					<nav class="nav-header">
 						<ul class="nav-header-list">
 							<li class="nav-header-link-text active"><a href="index/">products</a></li>
+							<li class="nav-header-link-text"><a href="book/">book</a></li>
 							<li class="nav-header-link-text"><a href="index/">story</a></li>
 							<li class="nav-header-link-text"><a href="cart/">order</a></li>
 							<li class="nav-header-link-icon">
@@ -149,10 +149,11 @@
 							</li>
 							<li class="nav-header-link-icon">
 								<a href="login/"><img src="{% static 'img/icons/person.svg' %}" alt="User" /></a>
-								<p>Привет, {{ request.user }} {{ user.first_name }} {{ user.last_name }}!</p>
+								<h3>Привет, {{ user.username }}!</h3>
+								<a class="navbar-brand" href="{% url 'logout' %}">Выйти</a>
 								{% if request.user.is_authenticated %}
 
-								<h3>Привет, {{ request.user }} {{ user.first_name }} {{ user.last_name }}!</h3>
+								<h3>Привет, {{ user.username }}!</h3>
 								<a class="navbar-brand" href="{% url 'logout' %}">Выйти</a>
 								{% endif %}
 
@@ -165,17 +166,19 @@
 				<!-- // header-links -->
 
 			</header>
-
+		<div id="content">
+				{% block contenth %}
 			<div class="cards-wrapper">
 				<!-- row -->
 				<div class="cards-wrapper-row">
 					<!-- col -->
 					<div class="cards-wrapper-col col-vertical">
-						<a href="index/" class="card card-horizontal card-sale"><img src="{% static 'img/printer.jpg' %}" alt="">
+
+						<a href="book_printing/" class="card card-horizontal card-sale"><img src="{% static 'img/printer.jpg' %}" alt="">
 
 						</a>
 
-						<a href="index/" class="card card-horizontal card-sale"><img src="{% static 'img/computer.jpg' %}" alt="">
+						<a href="book_computer/" class="card card-horizontal card-sale"><img src="{% static 'img/computer.jpg' %}" alt="">
 
 						</a>
 					</div>
@@ -258,18 +261,19 @@
 							<h4 class="card-section-title">Buy it for the first time</h4>
 							<p class="card-section-desc">New in store. Try it before anyone else.</p>
 						</a>
-
 					</div>
 					<!-- // col -->
 				</div>
 				<!-- // row -->
 			</div>
-
-<footer class="py-5 bg-dark">
+			<footer class="py-5 bg-dark">
     <div class="container">
         <a class="m-0 text-center text-white">Copyright © Coworking 2024</a>
     </div>
 </footer>
+						{% endblock %}
+				</div>
+
 		</main>
 
 

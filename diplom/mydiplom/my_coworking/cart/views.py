@@ -1,4 +1,6 @@
 from itertools import product
+
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 # Create your views here.
 from django.shortcuts import redirect
@@ -11,8 +13,8 @@ from django.shortcuts import render
 from .forms import SearchForm
 from .utils import search_product
 from .temp.temp import temp_index, temp_cart, temp_searchresults, temp_searchresults1, \
-    temp_products, temp_order, temp_checkout
-
+    temp_products, temp_order, temp_checkout, temp_searchproduct, temp_cartcheckout
+from django.contrib import messages
 
 def product_list(request):
     """
@@ -131,6 +133,19 @@ def get_available_dates():
         start_date += timedelta(days=1)
     return available_dates
 
+@login_required
+def cart_select_date(request):
+    if request.method == 'POST':
+        order_day = request.POST['order_day']
+        order_time = request.POST['order_time']
+        end_day = request.POST['end_day']
+        end_time = request.POST['end_time']
+        product = Product.objects.create(order_day=order_day, order_time=order_time, end_day=end_day, end_time=end_time)
+        cart_item = CartItem.objects.create(user=request.user, product=product, order_day=order_day, order_time=order_time, end_day=end_day, end_time=end_time)
+        messages.success(request, 'Product successfully added to your shopping cart.')
+        return redirect('cart')
+    return render(request, temp_cart)
+
 def search_view(request):
     """
     Представление для страницы результатов поиска.
@@ -141,8 +156,7 @@ def search_view(request):
         products = search_product(query)
     else:
         products = []
-
-    return render(request, 'cart/search_product.html', {
+    return render(request, temp_searchproduct, {
         'form': form,
         'products': products
     })
@@ -164,7 +178,6 @@ def order_page(request):
         )
         cart_item.save()
         return redirect('cart')
-
     else:
         cart_item = CartItem.objects.filter(user=request.user).first()
         return render(request, temp_order, {'cart_item': cart_item})
@@ -190,7 +203,7 @@ def checkout(request):
         "cart_items": cart_items,
         "total_price": total_price,
     }
-    return render(request, temp_checkout, context)
+    return render(request, temp_cartcheckout, context)
 
 def handle_payment(request):
     """
@@ -206,5 +219,7 @@ def handle_payment(request):
         return redirect("cart")
     except CartItem.DoesNotExist:
         return redirect("checkout")
+
+
 
 

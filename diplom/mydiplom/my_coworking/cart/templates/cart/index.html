@@ -50,11 +50,19 @@
     {% csrf_token %}
 				<div class="form-group">
         <label for="order_day">Дата заказа:</label>
-        <input type="date" class="form-control" id="order_day" name="order_day" value="{{ cart_item.order_day|date:'Y-m-d' }}">
+        <input type="date" class="form-control" id="order_day" name="order_day" value="{{ cart_item.order_day|date:'Y-m-d' }}" required>
     </div>
     <div class="form-group">
         <label for="order_time">Время заказа:</label>
-        <input type="time" class="form-control" id="order_time" name="order_time" value="{{ cart_item.order_time|time:'H:i' }}">
+        <input type="time" class="form-control" id="order_time" name="order_time" value="{{ cart_item.order_time|time:'H:i' }}" required>
+    </div>
+					<div class="form-group">
+        <label for="end_day">Дата завершения заказа:</label>
+        <input type="date" class="form-control" id="end_day" name="end_day" value="{{ cart_item.end_day|date:'Y-m-d' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="end_time">Время завершения заказа:</label>
+        <input type="time" class="form-control" id="end_time" name="end_time" value="{{ cart_item.end_time|time:'H:i' }}" required>
     </div>
                 <a href="{% url 'cart:add_to_cart'  product.id %}" class="buy-now-button">Buy at selected time</a>
 </form>

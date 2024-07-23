@@ -29,6 +29,8 @@ class Product(models.Model):
 	quantity = models.PositiveIntegerField(default=0)
 	price = models.DecimalField(max_digits=10, decimal_places=2)
 	image = models.ImageField(upload_to='products/')
+	order_day, order_time = get_available_datetime()
+	end_day, end_time = get_available_datetime()
 
 	def __str__(self):
 		return self.name
@@ -42,6 +44,7 @@ class CartItem(models.Model):
 	payment_status = models.CharField(max_length=50, default="unpaid")
 	date_added = models.DateTimeField(auto_now_add=True)
 	order_day, order_time = get_available_datetime()
+	end_day, end_time = get_available_datetime()
 
 	def __str__(self):
 		return f'{self.quantity} x {self.product.name}'

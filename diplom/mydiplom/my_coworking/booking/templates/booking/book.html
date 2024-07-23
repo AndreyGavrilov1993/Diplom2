@@ -1,0 +1,50 @@
+{% extends 'base_form.html' %}
+ {% load static %}
+
+{% block contenth %}
+  <h1>Welcome, {{ user.username }}!</h1>
+  <h2>Your Bookings</h2>
+
+
+  {% if bookings %}
+    <ul>
+      {% for booking in bookings %}
+        <li>
+          {% if booking.computer %}
+               <div class="cards-wrapper">
+				<!-- row -->
+				<div class="cards-wrapper-row">
+					<!-- col -->
+					<div class="cards-wrapper-col col-vertical">
+						<a href="" class="card card-horizontal card-sale"><img src="{% static 'img/computer.jpg' %}" alt="">
+						</a>
+					</div>
+                </div>
+    </div>
+            Computer booked from {{ booking.start_date }} to {{ booking.end_date }}
+          {%elif booking.printing %}
+             <div class="cards-wrapper">
+				<!-- row -->
+				<div class="cards-wrapper-row">
+					<!-- col -->
+					<div class="cards-wrapper-col col-vertical">
+						<a href="" class="card card-horizontal card-sale"><img src="{% static 'img/printer.jpg' %}" alt="">
+						</a>
+					</div>
+                </div>
+    </div>
+            Printing booked from {{ booking.start_date }} to {{ booking.end_date }} ({{ booking.printing.pages }} pages)
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>You have no bookings yet.</p>
+  {% endif %}
+
+
+                        <a href="/"><button type="submit" class="btn btn-primary btn-lg mb-2">Назад</button></a>
+
+  <a href="book_computer/"><button type="submit" class="btn btn-primary btn-lg mb-2">Book a Computer</button></a>
+  <a href="book_printing/"><button type="submit" class="btn btn-primary btn-lg mb-2">Book Printing</button></a>
+{% endblock %}

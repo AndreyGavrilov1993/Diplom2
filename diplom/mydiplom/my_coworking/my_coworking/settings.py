@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'appcoworking',
     'cart',
     'feedback',
+    'booking',
     # 'debug_toolbar',
 ]
 
