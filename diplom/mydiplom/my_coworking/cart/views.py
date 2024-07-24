@@ -222,4 +222,3 @@ def handle_payment(request):
 
 
 
-

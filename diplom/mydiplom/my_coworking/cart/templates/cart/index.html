@@ -5,6 +5,11 @@
 	<title>Product Catalog</title>
 	<style>
 		/* Add CSS styles for flex container and items */
+		img.center {
+            display: block;
+            margin: 0 auto;
+        }
+
 		.product-list {
 			display: flex;
 			flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
@@ -40,7 +45,7 @@
 	<ul class="product-list">
 		{% for product in products %}
 			<li class="product-item">
-				<img src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="150">
+				<img class="center" src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="150">
 				<h2>{{ product.name }}</h2>
 				<p>{{ product.quantity }}</p>
 				<p>{{ product.description }}</p>

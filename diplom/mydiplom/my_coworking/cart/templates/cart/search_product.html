@@ -6,6 +6,11 @@ Search product
 <head>
 	<style>
 		/* Add CSS styles for flex container and items */
+		img.center {
+            display: block;
+            margin: 0 auto;
+        }
+
 		.product-list {
 			display: flex;
 			flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
@@ -47,7 +52,7 @@ Search product
 	<ul class="product-list">
 		{% for product in products %}
 			<li class="product-item">
-				<img src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="150">
+				<img class='center' src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="150">
 				<h2>{{ product.name }}</h2>
 				<p>{{ product.quantity }}</p>
 				<p>{{ product.description }}</p>
@@ -55,18 +60,27 @@ Search product
 
 <form method="post">
     {% csrf_token %}
-				<div class="form-group">
+							<div class="form-group">
         <label for="order_day">Дата заказа:</label>
-        <input type="date" class="form-control" id="order_day" name="order_day" value="{{ cart_item.order_day|date:'Y-m-d' }}">
+        <input type="date" class="form-control" id="order_day" name="order_day" value="{{ cart_item.order_day|date:'Y-m-d' }}" required>
     </div>
     <div class="form-group">
         <label for="order_time">Время заказа:</label>
-        <input type="time" class="form-control" id="order_time" name="order_time" value="{{ cart_item.order_time|time:'H:i' }}">
+        <input type="time" class="form-control" id="order_time" name="order_time" value="{{ cart_item.order_time|time:'H:i' }}" required>
+    </div>
+					<div class="form-group">
+        <label for="end_day">Дата завершения заказа:</label>
+        <input type="date" class="form-control" id="end_day" name="end_day" value="{{ cart_item.end_day|date:'Y-m-d' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="end_time">Время завершения заказа:</label>
+        <input type="time" class="form-control" id="end_time" name="end_time" value="{{ cart_item.end_time|time:'H:i' }}" required>
     </div>
                 <a href="{% url 'cart:add_to_cart'  product.id %}" class="buy-now-button">Buy at selected time</a>
 </form>
 				<a href="{% url 'cart:add_to_cart'  product.id %}" class="buy-now-button">Buy Now</a>
 				<a class="buy-now-button" href="{% url 'cart:add_to_cart' product.id %}">Add to Cart</a>
+
                 <form action="{% url 'cart:product_list' %}" class="form-inline" method="get">
 
                <button type="submit" class="btn btn-primary btn-lg mb-2">Назад</button>

@@ -55,7 +55,7 @@
 	<div class="product-item">
 		<img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="200" height="150">
 		<p>{{ item.product.name }} ({{ item.quantity }})</p>
-		<p>Product successfully added to your shopping cart from {{ item.product.order_day }} {{ item.product.order_time }} from {{ item.product.order_day }} {{ item.product.order_time }}</p>
+		<p>Product successfully added to your shopping cart from {{ item.product.order_day }} {{ item.product.order_time }} to {{ item.product.order_day }} {{ item.product.order_time }}</p>
 		<p>Price: ${{ item.product.price }}</p>
 		<a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a>
 	</div>
@@ -65,7 +65,6 @@
 
 
 	</div>
-
 	<p>Total Price: ${{ total_price }}</p>
 			<form id="payment-form">
     <input type="hidden" id="payment-intent-id" name="payment_intent_id" value="{{ client_secret }}">

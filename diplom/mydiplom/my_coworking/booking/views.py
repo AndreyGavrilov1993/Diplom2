@@ -46,4 +46,3 @@ def book_printing(request):
         return redirect('book')
     return render(request, temp_bookprinting)
 
-
